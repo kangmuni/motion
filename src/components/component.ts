@@ -2,6 +2,7 @@
 
 export interface Component {
   attachTo(parent: HTMLElement, position?: InsertPosition): void;
+  removeFrom(parent: HTMLElement): void;
 }
 
 // @_@ HTML element creation 캡슐화하기 @_@
@@ -18,5 +19,11 @@ export class BaseComponent<T extends HTMLElement> implements Component {
   attachTo(parent: HTMLElement, position: InsertPosition = "afterbegin") {
     parent.insertAdjacentElement(position, this.element);
     // insertAdjacentElement 부모 자식안에 요소를 추가 할 수 있음 + command 누르고 마우스 클릭해서 파일들 읽어보는 연습하기!
+  }
+  removeFrom(parent: HTMLElement) {
+    if (parent !== this.element.parentElement) {
+      throw new Error("Parent mismatch!");
+    }
+    parent.removeChild(this.element);
   }
 }

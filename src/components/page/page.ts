@@ -4,10 +4,13 @@ export interface Composable {
   addChild(child: Component): void;
 }
 
+type OnCloseListener = () => void;
+
 // 내부에서 만들어주는 컴포넌트!
 class PageItemComponent
   extends BaseComponent<HTMLElement>
   implements Composable {
+  private closeListener?: OnCloseListener;
   constructor() {
     super(`<li class="page-item">
             <section class="page-item-body"></section>
@@ -15,6 +18,10 @@ class PageItemComponent
               <button class="close">&times;</button>
             </div>
           </li>`);
+    const closeBtn = this.element.querySelector(".close")! as HTMLButtonElement;
+    closeBtn.onclick = () => {
+      this.closeListener && this.closeListener();
+    };
   }
   addChild(child: Component) {
     // 외부에서 받아 올 자식
@@ -22,6 +29,9 @@ class PageItemComponent
       ".page-item-body"
     )! as HTMLElement;
     child.attachTo(container);
+  }
+  setOnCloseListener(listener: OnCloseListener) {
+    this.closeListener = listener;
   }
 }
 
@@ -35,5 +45,8 @@ export class PageComponent
     const item = new PageItemComponent();
     item.addChild(section);
     item.attachTo(this.element, "beforeend"); // 만든 페이지 아이템을 현재 페이지 마지막에 붙이기!
+    item.setOnCloseListener(() => {
+      item.removeFrom(this.element);
+    });
   }
 }
