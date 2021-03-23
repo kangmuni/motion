@@ -1,11 +1,12 @@
+import { Component } from "./components/component";
 import { VideoComponent } from "./components/page/item/video.js";
 import { TodoComponent } from "./components/page/item/todo.js";
 import { NoteComponent } from "./components/page/item/note.js";
 import { ImageComponent } from "./components/page/item/image.js";
-import { PageComponent } from "./components/page/page.js";
+import { Composable, PageComponent } from "./components/page/page.js";
 
 class App {
-  private readonly page: PageComponent;
+  private readonly page: Component & Composable; // 컴포넌트중에 하나이고 컴포저블이라는 인터페이스를 구현한 아이이다!
   constructor(appRoot: HTMLElement) {
     this.page = new PageComponent();
     this.page.attachTo(appRoot);
@@ -14,19 +15,23 @@ class App {
       "Image Title",
       "https://picsum.photos/600/300"
     );
-    image.attachTo(appRoot, "beforeend");
+    this.page.addChild(image);
+    //image.attachTo(appRoot, "beforeend");
 
     const note = new NoteComponent("Note Title", "Note Body");
-    note.attachTo(appRoot, "beforeend");
+    this.page.addChild(note);
+    //note.attachTo(appRoot, "beforeend");
 
     const todo = new TodoComponent("Todo Title", "Todo Item");
-    todo.attachTo(appRoot, "beforeend");
+    this.page.addChild(todo);
+    //todo.attachTo(appRoot, "beforeend");
 
     const video = new VideoComponent(
       "Video Title",
       "https://www.youtube.com/watch?v=CfPxlb8-ZQ0"
     );
-    video.attachTo(appRoot, "beforeend");
+    this.page.addChild(video);
+    //video.attachTo(appRoot, "beforeend");
   }
 }
 
