@@ -19,9 +19,13 @@ ul {
   padding-left: 0;
 }
 
+dialog {
+  border: 0;
+}
+
 .app {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -61,7 +65,7 @@ ul {
 
 .document {
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .document::-webkit-scrollbar {
@@ -71,6 +75,30 @@ ul {
 
 .document::-webkit-scrollbar-thumb {
   background-color: #889187;
+}
+
+.dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1.2rem;
+  background-color: #68686850;
+}
+
+.dialog__container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4em;
+  width: 32em;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  box-shadow: 2px 2px 2px rgb(46, 44, 44);
 }
 
 #footer {

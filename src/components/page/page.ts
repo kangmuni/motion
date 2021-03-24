@@ -17,7 +17,7 @@ type SectionContainerConstructor = {
   // 생성자는 아무것도 받지 않는 생성자인데 생성자가 호출이 되면 SectionContainer 라는 인터페이스 규격을 따라가는 그 어떤 클래스라도 이 타입에 맞게되는것이다.
 };
 
-// 궁극적인 이유 : 우리가 나중에 다른 타입의 PageItemCompnent를 만들게 되면 다크모드 라던지 이런것들을 확장해서 사용이 가능하다. (나 진짜 머리 깨진다..)
+// 궁극적인 이유 : 우리가 나중에 다른 타입의 PageItemCompnent를(다크모드라던지..) 만들게 되면 확장이 가능하고 유연한 컴포넌트가 가능하게 되는것이다. (나 진짜 머리 깨진다..)
 export class PageItemComponent
   extends BaseComponent<HTMLElement>
   implements SectionContainer {

@@ -1,4 +1,5 @@
-import { Component } from "./components/component";
+import { InputDialog } from "./components/dialog/dialog.js";
+import { Component } from "./components/component.js";
 import { VideoComponent } from "./components/page/item/video.js";
 import { TodoComponent } from "./components/page/item/todo.js";
 import { NoteComponent } from "./components/page/item/note.js";
@@ -36,6 +37,21 @@ class App {
     );
     this.page.addChild(video);
     //video.attachTo(appRoot, "beforeend");
+
+    const imageBtn = document.querySelector("#new-image")! as HTMLButtonElement;
+    imageBtn.addEventListener("click", () => {
+      const dialog = new InputDialog();
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(document.body);
+      });
+      dialog.setOnSubmitListener(() => {
+        // 섹션 만들어서 페이지 추가기능 구현 해야함
+        dialog.removeFrom(document.body);
+      });
+
+      dialog.attachTo(document.body);
+    });
   }
 }
 
