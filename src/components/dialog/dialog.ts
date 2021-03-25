@@ -39,7 +39,7 @@ export class InputDialog
     this.submitListener = listener;
   }
   addChild(child: Component) {
-    const body = document.querySelector("#dialog__body")! as HTMLElement;
+    const body = this.element.querySelector("#dialog__body")! as HTMLElement;
     child.attachTo(body);
   }
 }
