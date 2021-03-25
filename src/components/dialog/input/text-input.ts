@@ -1,3 +1,4 @@
+//import { TextData } from "./../dialog.js";
 import { BaseComponent } from "./../../component.js";
 export class TextSectionInput extends BaseComponent<HTMLElement> {
   constructor() {
