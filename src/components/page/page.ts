@@ -24,7 +24,7 @@ export class PageItemComponent
   // Composable => SectionContainer으로 바뀜!
   private closeListener?: OnCloseListener;
   constructor() {
-    super(`<li class="page-item">
+    super(`<li class="page-item" draggable="true">
             <section class="page-item-body"></section>
             <div class="page-item__controls">
               <button class="close">&times;</button>
@@ -34,7 +34,21 @@ export class PageItemComponent
     closeBtn.onclick = () => {
       this.closeListener && this.closeListener();
     };
+    this.element.addEventListener("dragstart", (event: DragEvent) => {
+      this.onDragStart(event);
+    });
+    this.element.addEventListener("dragend", (event: DragEvent) => {
+      this.onDragEnd(event);
+    });
   }
+
+  onDragStart(event: DragEvent) {
+    console.log("dragStart", event);
+  }
+  onDragEnd(event: DragEvent) {
+    console.log("dragEnd", event);
+  }
+
   addChild(child: Component) {
     // 외부에서 받아 올 자식
     const container = this.element.querySelector(
@@ -54,7 +68,25 @@ export class PageComponent
     // 원래 비어있던 생성자에 전달받을것이 생겼다!
     // PageComponent는 정해진 어떤 특정한 클래스를 만드는것이 아니라 생성자로 전달된 타입의 아이를 생성하게 된다. (외부에서 받아올것이다)
     super('<ul class="page"></ul>');
+    this.element.addEventListener("dragover", (event: DragEvent) => {
+      this.onDragOver(event);
+    });
+    this.element.addEventListener("drop", (event: DragEvent) => {
+      this.onDrop(event);
+    });
   }
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    console.log("onDragOver");
+  }
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    console.log("onDrop");
+  }
+  // drop zone을 정의할때는 이벤트에 preventDefault 호출을 해줘야한다. 안그러면 브라우저에서 기본적으로 처리하는 터치, 포인터 이벤트에서 안좋은 상황이 발생할 수 있다.
+  // 사실 이렇게 강요받는것은 나쁜 API이다. 그래서 버그도 많고 까다롭고 깨끗하지 않아서 많은 사람들이 좋아하지 않는다고한다.
+  // 하지만 구현해보자!
+
   addChild(section: Component) {
     // const item = new PageItemComponent(); // 내부에서가 한가지 클래스만 만드는것은 나쁜냄새가난다.
     const item = new this.pageItemConstructor(); // 외부에서 전달된 pageItemConstructor 통해 만들 수 있게 되었다.
