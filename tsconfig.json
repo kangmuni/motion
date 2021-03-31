@@ -19,7 +19,7 @@
     // "composite": true,                           /* Enable project compilation */
     // "tsBuildInfoFile": "./",                     /* Specify file to store incremental compilation information */
     "removeComments": true /* Do not emit comments to output. */,
-    "noEmitOnError": true, // 컴파일 에러가 발생하면 더이상 컴파일하지않아!
+    "noEmitOnError": true,
     // "noEmit": true,                              /* Do not emit outputs. */
     // "importHelpers": true,                       /* Import emit helpers from 'tslib'. */
     // "downlevelIteration": true,                  /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
@@ -41,7 +41,7 @@
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
     "noUncheckedIndexedAccess": true /* Include 'undefined' in index signature results */,
-    "noPropertyAccessFromIndexSignature": true /* Require undeclared properties from index signatures to use element accesses. */,
+    // "noPropertyAccessFromIndexSignature": true,  /* Require undeclared properties from index signatures to use element accesses. */
 
     /* Module Resolution Options */
     // "moduleResolution": "node",                  /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */

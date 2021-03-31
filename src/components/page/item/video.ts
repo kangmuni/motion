@@ -1,4 +1,4 @@
-import { BaseComponent } from "./../../component.js";
+import { BaseComponent } from './../../component.js';
 
 export class VideoComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
@@ -10,13 +10,13 @@ export class VideoComponent extends BaseComponent<HTMLElement> {
             </section>`);
 
     const iframe = this.element.querySelector(
-      ".video__iframe"
+      '.video__iframe'
     )! as HTMLIFrameElement;
     iframe.src = this.convertToEmbededURL(url);
     console.log(url);
 
     const titleElement = this.element.querySelector(
-      ".video__title"
+      '.video__title'
     )! as HTMLHeadingElement;
     titleElement.textContent = title;
   }

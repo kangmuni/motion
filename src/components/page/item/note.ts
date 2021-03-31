@@ -1,4 +1,4 @@
-import { BaseComponent } from "./../../component.js";
+import { BaseComponent } from './../../component.js';
 
 export class NoteComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, body: string) {
@@ -7,12 +7,12 @@ export class NoteComponent extends BaseComponent<HTMLElement> {
                 <p class="note__body"></p>
             </section>`);
     const titleElement = this.element.querySelector(
-      ".note__title"
+      '.note__title'
     )! as HTMLHeadingElement;
     titleElement.textContent = title;
 
     const bodyElement = this.element.querySelector(
-      ".note__body"
+      '.note__body'
     )! as HTMLParagraphElement;
     bodyElement.textContent = body;
   }
